@@ -4,11 +4,11 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Users Controller
+ * Posts Controller
  *
- * @property \App\Model\Table\UsersTable $Users
+ * @property \App\Model\Table\PostsTable $Posts
  */
-class UsersController extends AppController
+class PostsController extends AppController
 {
 
     /**
@@ -18,22 +18,22 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->set('users', $this->paginate($this->Users));
+        $this->set('posts', $this->paginate($this->Posts));
     }
 
     /**
      * View method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Post id.
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, [
+        $post = $this->Posts->get($id, [
             'contain' => []
         ]);
-        $this->set('user', $user);
+        $this->set('post', $post);
     }
 
     /**
@@ -43,58 +43,58 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
+        $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success('The user has been saved.');
+            $post = $this->Posts->patchEntity($post, $this->request->data);
+            if ($this->Posts->save($post)) {
+                $this->Flash->success('The post has been saved.');
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error('The user could not be saved. Please, try again.');
+                $this->Flash->error('The post could not be saved. Please, try again.');
             }
         }
-        $this->set(compact('user'));
+        $this->set(compact('post'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Post id.
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
+        $post = $this->Posts->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success('The user has been saved.');
+            $post = $this->Posts->patchEntity($post, $this->request->data);
+            if ($this->Posts->save($post)) {
+                $this->Flash->success('The post has been saved.');
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error('The user could not be saved. Please, try again.');
+                $this->Flash->error('The post could not be saved. Please, try again.');
             }
         }
-        $this->set(compact('user'));
+        $this->set(compact('post'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Post id.
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success('The user has been deleted.');
+        $post = $this->Posts->get($id);
+        if ($this->Posts->delete($post)) {
+            $this->Flash->success('The post has been deleted.');
         } else {
-            $this->Flash->error('The user could not be deleted. Please, try again.');
+            $this->Flash->error('The post could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);
     }
