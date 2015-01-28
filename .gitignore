@@ -1,7 +1,6 @@
-/vendor/*
+
 /config/app.php
-/tmp/*
-/logs/*
+
 composer.lock
 /plugins/Bake
 /plugins/Migrations
