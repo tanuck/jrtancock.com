@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Utility\Inflector;
 
 /**
  * Post Entity.
@@ -20,4 +21,9 @@ class Post extends Entity
         'body' => true,
         'author' => true,
     ];
+
+    protected function _setTitle($title) {
+        $this->set('slug', Inflector::slug($title));
+        return $title;
+    }
 }
