@@ -30,6 +30,9 @@ class PostsController extends AppController
      */
     public function view($id = null)
     {
+        if (!$id) {
+            throw new NotFoundException(__('Missing ID.'));
+        }
         $post = $this->Posts->get($id, [
             'contain' => []
         ]);

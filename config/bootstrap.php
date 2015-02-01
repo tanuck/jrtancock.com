@@ -52,6 +52,7 @@ use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+use WhoopsCakephp\Error\WhoopsErrorHandler;
 
 /**
  * Read configuration file and inject configuration into various
@@ -105,7 +106,11 @@ $isCli = php_sapi_name() === 'cli';
 if ($isCli) {
     (new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-    (new ErrorHandler(Configure::consume('Error')))->register();
+    if (Configure::read('debug')) {
+        (new WhoopsErrorHandler())->register();
+    } else {
+        (new ErrorHandler(Configure::consume('Error')))->register();
+    }
 }
 
 // Include the CLI bootstrap overrides.
