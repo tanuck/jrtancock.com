@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -10,6 +11,17 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+
+    /**
+     * beforeFilter override
+     *
+     * @param Event $event The beforeFilter cake event object.
+     * @return void
+     */
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->allow('add');
+    }
 
     /**
      * Index method
@@ -98,4 +110,32 @@ class UsersController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * Login method
+     *
+     * @return void Redirects to Auth::redirectUrl().
+     */
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid username/password, try again.'));
+        }
+    }
+
+    /**
+     * Logout method.
+     *
+     * @return void Redirects to Auth logout URL.
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
 }
