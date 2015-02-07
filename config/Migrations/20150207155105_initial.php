@@ -15,86 +15,50 @@ class Initial extends AbstractMigration {
     {
         $table = $this->table('posts');
         $table
-            ->addColumn('id', 'integer', [
-                'limit' => '11',
-                'signed' => '0',
-                'null' => '',
-                'default' => ''
-            ])
             ->addColumn('slug', 'string', [
                 'limit' => '255',
-                'null' => '',
-                'default' => ''
             ])
             ->addColumn('title', 'string', [
                 'limit' => '255',
-                'null' => '',
-                'default' => ''
             ])
-            ->addColumn('body', 'text', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
-            ])
-            ->addColumn('author', 'integer', [
+            ->addColumn('body', 'text')
+            ->addColumn('created', 'datetime')
+            ->addColumn('modified', 'datetime')
+            ->addColumn('created_by', 'integer', [
                 'limit' => '11',
-                'signed' => '0',
-                'null' => '',
-                'default' => ''
+                'signed' => false
             ])
-            ->addColumn('created', 'datetime', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
-            ])
-            ->addColumn('modified', 'datetime', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
+            ->addColumn('modified_by', 'integer', [
+                'limit' => '11',
+                'signed' => false
             ])
             ->save();
         $table = $this->table('users');
         $table
-            ->addColumn('id', 'integer', [
-                'limit' => '11',
-                'signed' => '0',
-                'null' => '',
-                'default' => ''
-            ])
             ->addColumn('username', 'string', [
                 'limit' => '50',
-                'null' => '',
-                'default' => ''
             ])
             ->addColumn('password', 'string', [
                 'limit' => '100',
-                'null' => '',
-                'default' => ''
             ])
             ->addColumn('email', 'string', [
                 'limit' => '100',
-                'null' => '',
-                'default' => ''
             ])
             ->addColumn('firstname', 'string', [
                 'limit' => '50',
-                'null' => '',
-                'default' => ''
             ])
             ->addColumn('lastname', 'string', [
                 'limit' => '50',
-                'null' => '',
-                'default' => ''
             ])
-            ->addColumn('created', 'datetime', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
+            ->addColumn('created', 'datetime')
+            ->addColumn('modified', 'datetime')
+            ->addColumn('created_by', 'integer', [
+                'limit' => '11',
+                'signed' => false
             ])
-            ->addColumn('modified', 'datetime', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
+            ->addColumn('modified_by', 'integer', [
+                'limit' => '11',
+                'signed' => false
             ])
             ->save();
     }

@@ -15,44 +15,21 @@ class Comments extends AbstractMigration {
     {
         $table = $this->table('comments');
         $table
-            ->addColumn('id', 'integer', [
-                'limit' => '11',
-                'unsigned' => '1',
-                'null' => '',
-                'default' => ''
-            ])
-            ->addColumn('body', 'text', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
-            ])
+            ->addColumn('body', 'text')
             ->addColumn('parent_id', 'integer', [
                 'limit' => '11',
-                'unsigned' => '1',
-                'null' => '1',
-                'default' => ''
+                'signed' => false,
+                'null' => true
             ])
-            ->addColumn('created', 'datetime', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
-            ])
-            ->addColumn('modified', 'datetime', [
-                'limit' => '',
-                'null' => '',
-                'default' => ''
-            ])
+            ->addColumn('created', 'datetime')
+            ->addColumn('modified', 'datetime')
             ->addColumn('created_by', 'integer', [
                 'limit' => '11',
-                'unsigned' => '1',
-                'null' => '',
-                'default' => ''
+                'signed' => false
             ])
             ->addColumn('modified_by', 'integer', [
                 'limit' => '11',
-                'unsigned' => '1',
-                'null' => '',
-                'default' => ''
+                'signed' => false
             ])
             ->save();
     }
