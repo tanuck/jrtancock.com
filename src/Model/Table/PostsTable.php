@@ -24,6 +24,7 @@ class PostsTable extends Table
         $this->displayField('title');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Ceeram/Blame.Blame');
     }
 
     /**

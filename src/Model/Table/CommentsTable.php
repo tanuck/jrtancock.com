@@ -25,6 +25,7 @@ class CommentsTable extends Table
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Ceeram/Blame.Blame');
+        $this->addBehavior('Tree');
         $this->belongsTo('ParentComments', [
             'className' => 'Comments',
             'foreignKey' => 'parent_id'

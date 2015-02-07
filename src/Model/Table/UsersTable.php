@@ -24,6 +24,7 @@ class UsersTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Ceeram/Blame.Blame');
     }
 
     /**

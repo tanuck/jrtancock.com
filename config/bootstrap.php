@@ -186,6 +186,8 @@ Plugin::load('Ceeram/Blame');
 // Debug Kit should not be installed on a production system
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
+    // Also disable the cache when in development mode
+    Cache::disable();
 }
 
 /**
@@ -194,5 +196,3 @@ if (Configure::read('debug')) {
 DispatcherFactory::add('Asset');
 DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
-
-Cache::disable();
