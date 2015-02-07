@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Ceeram\Blame\Controller\BlameTrait;
 
 /**
  * Application Controller
