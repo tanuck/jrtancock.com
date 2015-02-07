@@ -6,7 +6,6 @@ composer.lock
 /plugins/Bake
 /plugins/Migrations
 /plugins/DebugKit
-/plugins/WhoopsCakephp
 
 # IDE and editor specific files #
 #################################
