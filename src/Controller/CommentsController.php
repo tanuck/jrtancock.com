@@ -12,6 +12,17 @@ class CommentsController extends AppController
 {
 
     /**
+     * Initialize method
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+
+    /**
      * Index method
      *
      * @return void
