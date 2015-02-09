@@ -63,6 +63,7 @@ class PostsController extends AppController
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->data);
+            //pr($post);
             if ($this->Posts->save($post)) {
                 $this->Flash->success('The post has been saved.');
                 return $this->redirect(['action' => 'index']);

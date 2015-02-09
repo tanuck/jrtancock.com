@@ -38,15 +38,12 @@ class PostsTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create')
-            ->requirePresence('slug', 'create')
+            ->requirePresence('slug', 'update')
             ->notEmpty('slug')
             ->requirePresence('title', 'create')
             ->notEmpty('title')
             ->requirePresence('body', 'create')
-            ->notEmpty('body')
-            ->add('author', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('author', 'create')
-            ->notEmpty('author');
+            ->notEmpty('body');
 
         return $validator;
     }

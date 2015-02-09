@@ -15,10 +15,8 @@
     <fieldset>
         <legend><?= __('Edit Post') ?></legend>
         <?php
-            echo $this->Form->input('slug');
             echo $this->Form->input('title');
             echo $this->Form->input('body');
-            echo $this->Form->input('author');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -27,6 +27,7 @@ use Ceeram\Blame\Controller\BlameTrait;
  */
 class AppController extends Controller
 {
+    use BlameTrait;
 
     /**
      * Initialization hook method.
