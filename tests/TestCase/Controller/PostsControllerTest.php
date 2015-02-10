@@ -26,7 +26,8 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/posts');
+        $this->assertResponseOk();
     }
 
     /**
@@ -36,7 +37,14 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/posts/view');
+        $this->assertResponseCode(404);
+
+        $this->get('/posts/view/1');
+        $this->assertResponseOk();
+
+        $this->get('/posts/view/100');
+        $this->assertResponseCode(404);
     }
 
     /**
@@ -46,7 +54,19 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testAdd()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/posts/add');
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'lorem'
+                ]
+            ]
+        ]);
+        $this->get('/posts/add');
+        $this->assertResponseOk();
     }
 
     /**
@@ -56,7 +76,22 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testEdit()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/posts/edit/1');
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'lorem'
+                ]
+            ]
+        ]);
+        $this->get('/posts/edit/1');
+        $this->assertResponseOk();
+
+        $this->get('/posts/edit');
+        $this->assertResponseCode(404);
     }
 
     /**
@@ -66,6 +101,22 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/posts/delete/1');
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'lorem'
+                ]
+            ]
+        ]);
+
+        $this->get('/posts/delete/1');
+        $this->assertResponseCode(405);
+
+        $this->post('/posts/delete/1');
+        $this->assertRedirect(['action' => 'index']);
     }
 }
