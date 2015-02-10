@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Users Controller
@@ -42,6 +43,9 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid User ID.'));
+        }
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -77,6 +81,9 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid User ID.'));
+        }
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -101,6 +108,9 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid User ID.'));
+        }
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
