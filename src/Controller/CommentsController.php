@@ -23,36 +23,6 @@ class CommentsController extends AppController
     }
 
     /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['ParentComments']
-        ];
-        $this->set('comments', $this->paginate($this->Comments));
-        $this->set('_serialize', ['comments']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Comment id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $comment = $this->Comments->get($id, [
-            'contain' => ['ParentComments', 'ChildComments']
-        ]);
-        $this->set('comment', $comment);
-        $this->set('_serialize', ['comment']);
-    }
-
-    /**
      * Add method
      *
      * @return void Redirects on successful add, renders view otherwise.
