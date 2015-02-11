@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * Comments Controller
@@ -39,9 +40,7 @@ class CommentsController extends AppController
                 $this->Flash->error('The comment could not be saved. Please, try again.');
             }
         }
-        $parentComments = $this->Comments->ParentComments->find('list', ['limit' => 200]);
         $this->set(compact('comment', 'parentComments'));
-        $this->set('_serialize', ['comment']);
     }
 
     /**
@@ -53,6 +52,9 @@ class CommentsController extends AppController
      */
     public function edit($id = null)
     {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Comment ID.'));
+        }
         $comment = $this->Comments->get($id, [
             'contain' => []
         ]);
@@ -65,9 +67,7 @@ class CommentsController extends AppController
                 $this->Flash->error('The comment could not be saved. Please, try again.');
             }
         }
-        $parentComments = $this->Comments->ParentComments->find('list', ['limit' => 200]);
         $this->set(compact('comment', 'parentComments'));
-        $this->set('_serialize', ['comment']);
     }
 
     /**
@@ -79,6 +79,9 @@ class CommentsController extends AppController
      */
     public function delete($id = null)
     {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Comment ID.'));
+        }
         $this->request->allowMethod(['post', 'delete']);
         $comment = $this->Comments->get($id);
         if ($this->Comments->delete($comment)) {

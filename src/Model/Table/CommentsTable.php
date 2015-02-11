@@ -21,7 +21,7 @@ class CommentsTable extends Table
     public function initialize(array $config)
     {
         $this->table('comments');
-        $this->displayField('id');
+        $this->displayField('body');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Ceeram/Blame.Blame');
@@ -52,10 +52,8 @@ class CommentsTable extends Table
             ->add('parent_id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('parent_id')
             ->add('created_by', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('created_by', 'create')
             ->notEmpty('created_by')
             ->add('modified_by', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('modified_by', 'create')
             ->notEmpty('modified_by');
 
         return $validator;
