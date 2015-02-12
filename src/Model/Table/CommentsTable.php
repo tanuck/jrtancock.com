@@ -50,11 +50,7 @@ class CommentsTable extends Table
             ->requirePresence('body', 'create')
             ->notEmpty('body')
             ->add('parent_id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('parent_id')
-            ->add('created_by', 'valid', ['rule' => 'numeric'])
-            ->notEmpty('created_by')
-            ->add('modified_by', 'valid', ['rule' => 'numeric'])
-            ->notEmpty('modified_by');
+            ->allowEmpty('parent_id');
 
         return $validator;
     }

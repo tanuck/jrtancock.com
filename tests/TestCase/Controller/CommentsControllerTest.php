@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\CommentsController;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
@@ -20,33 +21,39 @@ class CommentsControllerTest extends IntegrationTestCase
     ];
 
     /**
-     * Test index method
-     *
-     * @return void
-     */
-    public function testIndex()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test view method
-     *
-     * @return void
-     */
-    public function testView()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
      * Test add method
      *
      * @return void
      */
     public function testAdd()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/comments/add');
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'lorem'
+                ]
+            ]
+        ]);
+
+        $this->get('/comments/add');
+        $this->assertResponseOk();
+
+        $data = [
+            'body' => 'Comment body'
+        ];
+        $this->post('/comments/add', $data);
+        $this->assertRedirect(['action' => 'index']);
+        $comments = TableRegistry::get('Comments');
+        $comment = $comments->find()->where(['body' => 'Comment body']);
+        $this->assertEquals(1, $comment->count());
+
+        unset($data['body']);
+        $this->post('/comments/add', $data);
+        $this->assertResponseContains('The comment could not be saved.');
     }
 
     /**

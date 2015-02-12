@@ -40,7 +40,7 @@ class CommentsController extends AppController
                 $this->Flash->error('The comment could not be saved. Please, try again.');
             }
         }
-        $this->set(compact('comment', 'parentComments'));
+        $this->set(compact('comment'));
     }
 
     /**
