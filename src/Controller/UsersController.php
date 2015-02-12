@@ -19,7 +19,8 @@ class UsersController extends AppController
      * @param Event $event The beforeFilter cake event object.
      * @return void
      */
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         $this->Auth->allow('add');
     }
@@ -147,5 +148,4 @@ class UsersController extends AppController
     {
         return $this->redirect($this->Auth->logout());
     }
-
 }

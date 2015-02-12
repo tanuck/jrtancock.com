@@ -32,7 +32,6 @@ class UsersFixture extends TestFixture
             'engine' => 'InnoDB', 'collation' => 'utf8_general_ci',
         ],
     ];
-    // @codingStandardsIgnoreEnd
 
     /**
      * Records
@@ -51,4 +50,5 @@ class UsersFixture extends TestFixture
             'modified' => '2015-01-27 13:22:17',
         ],
     ];
+    // @codingStandardsIgnoreEnd
 }

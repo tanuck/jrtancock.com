@@ -22,7 +22,14 @@ class Post extends Entity
         'author' => true,
     ];
 
-    protected function _setTitle($title) {
+    /**
+     * Set the slug.
+     *
+     * @param string $title The data set from the form field.
+     * @return mixed
+     */
+    protected function _setTitle($title)
+    {
         $this->set('slug', Inflector::slug($title));
         return $title;
     }

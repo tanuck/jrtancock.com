@@ -31,7 +31,6 @@ class PostsFixture extends TestFixture
 'engine' => 'InnoDB', 'collation' => 'utf8_general_ci'
         ],
     ];
-    // @codingStandardsIgnoreEnd
 
     /**
      * Records
@@ -49,4 +48,5 @@ class PostsFixture extends TestFixture
             'modified' => '2015-01-28 08:08:32'
         ],
     ];
+    // @codingStandardsIgnoreEnd
 }

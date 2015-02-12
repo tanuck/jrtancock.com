@@ -33,7 +33,6 @@ class CommentsFixture extends TestFixture
 'engine' => 'InnoDB', 'collation' => 'utf8_general_ci'
         ],
     ];
-    // @codingStandardsIgnoreEnd
 
     /**
      * Records
@@ -53,4 +52,5 @@ class CommentsFixture extends TestFixture
             'modified_by' => 1
         ],
     ];
+    // @codingStandardsIgnoreEnd
 }
