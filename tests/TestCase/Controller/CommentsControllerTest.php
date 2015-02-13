@@ -106,6 +106,31 @@ class CommentsControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->post('/comments/delete/1');
+        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'lorem'
+                ]
+            ]
+        ]);
+
+        $this->get('/comments/delete/1');
+        $this->assertResponseCode(405);
+
+        $this->post('/comments/delete');
+        $this->assertResponseCode(404);
+
+        $this->post('/comments/delete/100');
+        $this->assertResponseCode(404);
+
+        $this->post('/comments/delete/1');
+        $this->assertRedirect(['action' => 'index']);
+        $comments = TableRegistry::get('Comments');
+        $comment = $comments->find()->where(['id' => 1]);
+        $this->assertEquals(0, $comment->count());
     }
 }
