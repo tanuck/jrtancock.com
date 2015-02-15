@@ -13,6 +13,8 @@ use Cake\Network\Exception\NotFoundException;
 class PostsController extends AppController
 {
 
+    public $helpers = ['Tanuck/Markdown.Markdown'];
+
     /**
      * beforeFilter override
      *
