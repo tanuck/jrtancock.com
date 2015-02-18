@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <?= $this->Html->script('jquery.pjax.js') ?>
+    <?= $this->Html->script('script.js') ?>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="pjax-container">
         <header>
             <h2><?= $this->fetch('title') ?></h2>
         </header>
