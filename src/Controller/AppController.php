@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 use Ceeram\Blame\Controller\BlameTrait;
 
 /**
@@ -49,5 +50,12 @@ class AppController extends Controller
                 'action' => 'login',
             ],
         ]);
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        if ($this->request->header('X-PJAX')) {
+            $this->layout = 'pjax';
+        }
     }
 }
