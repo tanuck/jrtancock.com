@@ -50,6 +50,11 @@ Router::scope('/', function ($routes) {
      */
     $routes->connect('/', ['controller' => 'posts', 'action' => 'index']);
 
+    $routes->connect('/login', ['controller' => 'users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'users', 'action' => 'logout']);
+
+    $routes->connect('/:slug', ['controller' => 'posts', 'action' => 'view']);
+
     /**
      * Connect catchall routes for all controllers.
      *
