@@ -48,12 +48,12 @@ Router::scope('/', function ($routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'posts', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'Posts', 'action' => 'index']);
 
-    $routes->connect('/login', ['controller' => 'users', 'action' => 'login']);
-    $routes->connect('/logout', ['controller' => 'users', 'action' => 'logout']);
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
-    $routes->connect('/:slug', ['controller' => 'posts', 'action' => 'view']);
+    $routes->connect('/:slug', ['controller' => 'Posts', 'action' => 'view']);
 
     /**
      * Connect catchall routes for all controllers.
