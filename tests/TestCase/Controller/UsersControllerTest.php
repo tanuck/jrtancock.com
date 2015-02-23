@@ -219,7 +219,7 @@ class UsersControllerTest extends IntegrationTestCase
         $user = $users->newEntity();
         $user = $users->patchEntity($user, $data);
         if ($users->save($user)) {
-            $this->get('/users/login');
+            $this->get('/login');
             $this->assertResponseOk();
 
             $data = [
@@ -227,12 +227,12 @@ class UsersControllerTest extends IntegrationTestCase
                 'password' => 'password',
             ];
 
-            $this->put('/users/login', $data);
+            $this->put('/login', $data);
             $this->assertSession(null, 'Auth.User.id');
 
-            $this->post('/users/login', $data);
+            $this->post('/login', $data);
             $this->assertSession('2', 'Auth.User.id');
-            $this->assertRedirect('/posts');
+            $this->assertRedirect(['controller' => 'Posts']);
         }
     }
 
@@ -252,7 +252,7 @@ class UsersControllerTest extends IntegrationTestCase
             ]
         ]);
 
-        $this->get('/users/logout');
+        $this->get('/logout');
         $this->assertRedirect(['action' => 'login']);
         $this->assertSession(null, 'Auth.User.id');
     }

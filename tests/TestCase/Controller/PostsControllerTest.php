@@ -55,7 +55,7 @@ class PostsControllerTest extends IntegrationTestCase
     public function testAdd()
     {
         $this->get('/posts/add');
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
 
         $this->session([
             'Auth' => [
@@ -77,7 +77,7 @@ class PostsControllerTest extends IntegrationTestCase
     public function testEdit()
     {
         $this->get('/posts/edit/1');
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
 
         $this->session([
             'Auth' => [
@@ -102,7 +102,7 @@ class PostsControllerTest extends IntegrationTestCase
     public function testDelete()
     {
         $this->get('/posts/delete/1');
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
 
         $this->session([
             'Auth' => [

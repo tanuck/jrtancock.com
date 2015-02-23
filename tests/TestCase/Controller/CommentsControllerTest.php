@@ -28,7 +28,7 @@ class CommentsControllerTest extends IntegrationTestCase
     public function testAdd()
     {
         $this->get('/comments/add');
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
 
         $this->session([
             'Auth' => [
@@ -64,7 +64,7 @@ class CommentsControllerTest extends IntegrationTestCase
     public function testEdit()
     {
         $this->get('/comments/edit/1');
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
 
         $this->session([
             'Auth' => [
@@ -107,7 +107,7 @@ class CommentsControllerTest extends IntegrationTestCase
     public function testDelete()
     {
         $this->post('/comments/delete/1');
-        $this->assertRedirect(['controller' => 'users', 'action' => 'login']);
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
 
         $this->session([
             'Auth' => [
