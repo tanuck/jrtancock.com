@@ -52,6 +52,12 @@ class AppController extends Controller
         ]);
     }
 
+    /**
+     * beforeFilter method.
+     *
+     * @param Event $event The Event object.
+     * @return void
+     */
     public function beforeFilter(Event $event)
     {
         if ($this->request->header('X-PJAX')) {
